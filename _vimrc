@@ -40,5 +40,5 @@ nnoremap <silent> <leader>nb :set relativenumber!<CR>
 
 inoremap " ""<Esc>i
 inoremap ( ()<Esc>i
-inoremap { {}<Esc>i
+inoremap { {<CR><CR>}<Esc>ki<Tab>
 inoremap <C-l> <Esc>l
