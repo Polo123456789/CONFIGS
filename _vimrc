@@ -7,7 +7,6 @@ syntax on
 set hidden
 set wildmenu
 set showcmd
-set hlsearch
 set ignorecase
 set smartcase
 set autoindent
@@ -38,7 +37,11 @@ map! <C-,> <Esc>A;<Esc>o
 
 nnoremap <silent> <leader>nb :set relativenumber!<CR>
 
+inoremap <C-l> <Esc>l
+inoremap jk <Esc>
 inoremap " ""<Esc>i
 inoremap ( ()<Esc>i
 inoremap { {<CR><CR>}<Esc>ki<Tab>
-inoremap <C-l> <Esc>l
+inoremap "" ""
+inoremap () ()
+inoremap {} {}
