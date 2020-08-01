@@ -41,7 +41,7 @@ inoremap <C-l> <Esc>l
 inoremap jk <Esc>
 inoremap " ""<Esc>i
 inoremap ( ()<Esc>i
-inoremap { {<CR><CR>}<Esc>ki<Tab>
+inoremap {<CR> {<CR><CR>}<Esc>kcc
 inoremap "" ""
 inoremap () ()
 inoremap {} {}
