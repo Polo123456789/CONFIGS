@@ -44,4 +44,3 @@ inoremap ( ()<Esc>i
 inoremap {<CR> {<CR><CR>}<Esc>kcc
 inoremap "" ""
 inoremap () ()
-inoremap {} {}
