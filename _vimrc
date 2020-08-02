@@ -38,7 +38,7 @@ map! <C-,> <Esc>A;<Esc>o
 nnoremap <silent> <leader>nb :set relativenumber!<CR>
 
 inoremap <C-l> <Esc>l
-inoremap jk <Esc>
+inoremap fd <Esc>
 inoremap " ""<Esc>i
 inoremap ( ()<Esc>i
 inoremap {<CR> {<CR><CR>}<Esc>kcc
