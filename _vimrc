@@ -29,7 +29,7 @@ let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_winsize = 25
 
-map <C-j> <Esc>/<++><CR><Esc>cf>
+map <C-j> <Esc>/<++><CR><Esc>"_cf>
 map <Space>ee :Explore<CR>
 map <Space>ev :Vexplore<CR>
 map <Space>eh :Sexplore<CR>
@@ -41,6 +41,6 @@ inoremap <C-l> <Esc>l
 inoremap fd <Esc>
 inoremap " ""<Esc>i
 inoremap ( ()<Esc>i
-inoremap {<CR> {<CR><CR>}<Esc>kcc
+inoremap {<CR> {<CR><CR>}<Esc>k"_cc
 inoremap "" ""
 inoremap () ()
