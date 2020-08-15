@@ -1,3 +1,7 @@
+"" vimfiles en windows, .vim en los demas
+"" NERDTree, Tlist (requiere ctags), lightline, acp (autocomplete)
+set rtp+=~/scripts
+
 set nobackup
 set number
 set backspace=indent,eol,start
@@ -31,10 +35,8 @@ let g:netrw_altv = 1
 let g:netrw_winsize = 25
 let mapleader = "\<Space>"
 
+
 map <C-j> <Esc>/<++><CR><Esc>"_cf>
-map <leader>ee :Explore<CR>
-map <leader>ev :Vexplore<CR>
-map <leader>eh :Sexplore<CR>
 map! <C-,> <Esc>A;<Esc>o
 
 nnoremap <silent> <leader>nb :set relativenumber!<CR>
@@ -43,6 +45,8 @@ nnoremap <leader>a @a
 nnoremap <leader>s @s
 nnoremap <leader>d @d
 nnoremap <leader>f @f
+nnoremap <leader>ee :NERDTreeToggle<CR>
+nnoremap <leader>ts :Tlist<CR>
 
 inoremap <C-l> <Esc>l
 inoremap fd <Esc>
@@ -52,3 +56,10 @@ inoremap {<CR> {<CR><CR>}<Esc>k"_cc
 inoremap "" ""
 inoremap () ()
 inoremap <C-l> <C-o>zz
+
+function s:CompleteTags()
+  inoremap <buffer> > ></<C-x><C-o><Esc>:startinsert!<CR><C-O>?</<CR>
+  inoremap <buffer> ><Leader> >
+  inoremap <buffer> ><CR> ></<C-x><C-o><Esc>:startinsert!<CR><C-O>?</<CR><CR><Tab><CR><Up><C-O>$
+endfunction
+autocmd BufRead,BufNewFile *.html,*.js,*.xml call s:CompleteTags()
