@@ -50,7 +50,10 @@ nnoremap <leader>s @s
 nnoremap <leader>d @d
 nnoremap <leader>f @f
 nnoremap <leader>ee :NERDTreeToggle<CR>
-nnoremap <leader>ts :Tlist<CR>
+nnoremap <leader>Ts :Tlist<CR>
+nnoremap <leader>tn :tabnew 
+nnoremap <leader>tl :tabn<CR>
+nnoremap <leader>th :tabp<CR>
 
 inoremap <C-l> <Esc>l
 inoremap fd <Esc>
