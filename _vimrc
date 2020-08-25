@@ -25,10 +25,11 @@ set visualbell
 set t_vb=
 set cmdheight=2
 set notimeout ttimeout ttimeoutlen=200
-set pastetoggle=<F11>
+set pastetoggle=<F12>
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+set background=dark
 
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
@@ -40,11 +41,13 @@ let maplocalleader = "-"
 let mapleader = "\<Space>"
 
 
-noremap <C-j> <Esc>/<++><CR><Esc>"_cf>
-inoremap <C-,> <Esc>A;<Esc>o
+vnoremap J :move +2<CR>gv
+vnoremap K :move -2<CR>gv
 
 nnoremap <silent> <leader>nb :set relativenumber!<CR>
+noremap <C-j> <Esc>/<++><CR><Esc>"_cf>
 nnoremap <C-l> zz
+noremap <leader>bd :bd<CR>
 nnoremap <leader>a @a
 nnoremap <leader>s @s
 nnoremap <leader>d @d
@@ -54,7 +57,9 @@ nnoremap <leader>Ts :Tlist<CR>
 nnoremap <leader>tn :tabnew 
 nnoremap <leader>tl :tabn<CR>
 nnoremap <leader>th :tabp<CR>
+nnoremap <leader>fzf :edit `fzf`<CR>
 
+inoremap <C-,> <Esc>A;<Esc>o
 inoremap <C-l> <Esc>l
 inoremap fd <Esc>
 inoremap " ""<Esc>i
@@ -62,6 +67,7 @@ inoremap "<leader> "
 inoremap ( ()<Esc>i
 inoremap (<leader> (
 inoremap {<CR> {<CR><CR>}<Esc>k"_cc
+inoremap {<leader> {
 inoremap "" ""
 inoremap () ()
 inoremap <C-l> <C-o>zz
