@@ -1,6 +1,14 @@
-"" vimfiles en windows, .vim en los demas
-"" NERDTree, Tlist (requiere ctags), lightline, acp (autocomplete)
 set rtp+=~/scripts
+
+call plug#begin()
+
+Plug 'preservim/nerdtree'
+Plug 'vim-scripts/taglist.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+call plug#end()
 
 filetype indent plugin on
 syntax on
@@ -57,7 +65,6 @@ nnoremap <leader>Ts :Tlist<CR>
 nnoremap <leader>tn :tabnew 
 nnoremap <leader>tl :tabn<CR>
 nnoremap <leader>th :tabp<CR>
-nnoremap <leader>fzf :edit `fzf`<CR>
 
 inoremap <C-,> <Esc>A;<Esc>o
 inoremap <C-l> <Esc>l
