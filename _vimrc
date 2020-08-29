@@ -92,6 +92,7 @@ nnoremap <leader>so :setlocal spell!<CR>
 nnoremap <leader>sr z=
 nnoremap <leader>sn ]s
 nnoremap <leader>sd ]sz=1
+nnoremap <leader>ff :Files<CR>
 
 " Para poner el ; al final de la linea en C, C++, etc
 inoremap <C-,> <Esc>A;<Esc>o
