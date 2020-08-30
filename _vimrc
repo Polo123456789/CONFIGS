@@ -121,6 +121,16 @@ function s:setEncodingUTF()
 endfunction
 autocmd BufRead,BufNewFile *.org call s:setEncodingUTF()
 
+" Creador de Header para markdown
+function s:HeaderCreator()
+    nnoremap <leader>mh1 YpVr=
+    nnoremap <leader>mh2 YpVr-
+    inoremap <localleader>1 <Esc>YpVr=o<C-j>
+    inoremap <localleader>2 <Esc>YpVr-o<C-j>
+endfunction
+autocmd BufRead,BufNewFile *.md call s:HeaderCreator()
+
+
 " Autocompletar tags en html
 function s:CompleteTags()
   inoremap <buffer> > ></<C-x><C-o><Esc>:startinsert!<CR><C-O>?</<CR>
