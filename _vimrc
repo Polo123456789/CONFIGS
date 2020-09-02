@@ -122,6 +122,12 @@ function s:setEncodingUTF()
 endfunction
 autocmd BufRead,BufNewFile *.org call s:setEncodingUTF()
 
+" Apagamos el spell de pandoc
+function s:sinSpell()
+    set spell!
+endfunction
+autocmd BufRead,BufNewFile *.md call s:sinSpell()
+
 " Creador de Header para markdown
 function s:HeaderCreator()
     nnoremap <leader>mh1 YpVr=
