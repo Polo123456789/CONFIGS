@@ -9,6 +9,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax' 
 Plug 'vimwiki/vimwiki'
+Plug 'sheerun/vim-wombat-scheme'
 
 call plug#end()
 
