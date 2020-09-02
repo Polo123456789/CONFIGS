@@ -9,7 +9,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax' 
 Plug 'vimwiki/vimwiki'
-Plug 'sheerun/vim-wombat-scheme'
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'Polo123456789/vim-wombat-scheme'
 
 call plug#end()
 
@@ -46,7 +47,6 @@ set background=dark
 if (has("termguicolors"))
     set termguicolors
     colorscheme wombat
-    " Has este cambio :
     " hi Title ctermfg=74 guifg=#5fafd7
 endif
 
