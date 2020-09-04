@@ -1,8 +1,9 @@
 
 call plug#begin()
 
+"Plug 'vim-scripts/taglist.vim'
 Plug 'preservim/nerdtree'
-Plug 'vim-scripts/taglist.vim'
+Plug 'majutsushi/tagbar'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -10,6 +11,8 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax' 
 Plug 'vimwiki/vimwiki'
 Plug 'dhruvasagar/vim-table-mode'
+Plug 'vim-scripts/AutoComplPop'
+" Esta es mia
 Plug 'Polo123456789/vim-wombat-scheme'
 
 call plug#end()
@@ -47,7 +50,6 @@ set background=dark
 if (has("termguicolors"))
     set termguicolors
     colorscheme wombat
-    " hi Title ctermfg=74 guifg=#5fafd7
 endif
 
 " Por si no tengo nerdTree a la mano
@@ -81,9 +83,12 @@ noremap <C-j> <Esc>/<++><CR><Esc>"_cf>
 
 " Shortcuts
 nnoremap <leader>bd :bd<CR>
+noremap <leader><tab> :bn<cr>
 nnoremap <leader>R :%s//g<left><left>
 nnoremap <leader>ee :NERDTreeToggle<CR>
-nnoremap <leader>Ts :Tlist<CR>
+" nnoremap <leader>Ts :Tlist<CR>
+nnoremap <leader>Ts :TagbarToggle<CR>
+nnoremap <leader>Tc :!ctags -R .<CR>
 nnoremap <leader>tn :tabnew 
 nnoremap <leader>tl :tabn<CR>
 nnoremap <leader>th :tabp<CR>
@@ -110,10 +115,6 @@ inoremap {<CR> {<CR><CR>}<Esc>k"_cc
 inoremap {<leader> {
 inoremap "" ""
 inoremap () ()
-
-" Una cosa que quiero probar
-nnoremap i zzi
-nnoremap a zza
 
 " Los org no les da el encodign correcto
 function s:setEncodingUTF()
