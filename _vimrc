@@ -1,4 +1,3 @@
-
 call plug#begin()
 
 "Plug 'vim-scripts/taglist.vim'
@@ -11,8 +10,9 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax' 
 Plug 'vimwiki/vimwiki'
 Plug 'dhruvasagar/vim-table-mode'
-Plug 'vim-scripts/AutoComplPop'
-" Esta es mia
+Plug 'lifepillar/vim-mucomplete'
+Plug 'tpope/vim-fugitive'
+Plug 'mbbill/undotree'
 Plug 'Polo123456789/vim-wombat-scheme'
 
 call plug#end()
@@ -44,7 +44,22 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 set background=dark
+" set exrc
+" set secure
 " set hlsearch
+
+" Config del mucomplete
+set completeopt+=menuone
+set completeopt+=noselect
+set completeopt+=noinsert
+set shortmess+=c   " Shut off completion messages
+set belloff+=ctrlg " If Vim beeps during completion
+let g:mucomplete#enable_auto_at_startup = 1
+let g:mucomplete#completion_delay = 1
+inoremap <C-Space> <Esc>:redraw!<CR>a
+
+" Omni Complete
+" set omnifunc=syntaxcomplete#Complete
 
 " Para usar el tema en la terminal
 if (has("termguicolors"))
@@ -72,36 +87,46 @@ inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
-" Una comodidad
+" Comodidades
+nnoremap <leader>vrc :e ~/_vimrc<CR>
 nnoremap <C-l> zz
 inoremap <C-l> <C-o>zz
 
 " Numeros relativos
 nnoremap <silent> <leader>nb :set relativenumber!<CR>
+
 " Placeholders
 noremap <C-j> <Esc>/<++><CR><Esc>"_cf>
 
 " Shortcuts
 nnoremap <leader>bd :bd<CR>
-noremap <leader><tab> :bn<cr>
+nnoremap <leader><tab> :bn<CR>
 nnoremap <leader>R :%s//g<left><left>
-nnoremap <leader>ee :NERDTreeToggle<CR>
+nnoremap <leader>hs :set hlsearch!<CR>
+
+" Maps de Plugins
 " nnoremap <leader>Ts :Tlist<CR>
+nnoremap <leader>ee :NERDTreeToggle<CR>
 nnoremap <leader>Ts :TagbarToggle<CR>
-nnoremap <leader>Tc :!ctags -R .<CR>
+nnoremap <leader>Tc :!ctags --c-kinds=+p -R .<CR>
+nnoremap <leader>ut :UndotreeToggle<CR>
+
+" Tabs
 nnoremap <leader>tn :tabnew 
 nnoremap <leader>tl :tabn<CR>
 nnoremap <leader>th :tabp<CR>
+
+" Spell
 nnoremap <leader>se :setlocal spell spelllang=es_es<CR>
 nnoremap <leader>si :setlocal spell spelllang=en_us<CR>
 nnoremap <leader>so :setlocal spell!<CR>
 nnoremap <leader>sr z=
 nnoremap <leader>sn ]s
 nnoremap <leader>sd ]sz=1
-nnoremap <leader>ff :Files<CR>
 
-" Para poner el ; al final de la linea en C, C++, etc
-inoremap <C-,> <Esc>A;<Esc>o
+" FZF
+nnoremap <leader>ff :Files<CR>
+nnoremap <leader>bb :Buffers<CR>
 
 " Para no mover la mano del teclado
 inoremap fd <Esc>
@@ -148,3 +173,13 @@ function s:CompleteTags()
 endfunction
 autocmd BufRead,BufNewFile *.html,*.js,*.xml call s:CompleteTags()
 
+"" Modifique el default.tpl
+"" En el head:
+"" <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css" />
+"" Al final del body
+"" <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+"" <script type="text/javascript">
+""     document.querySelectorAll('pre').forEach(block => hljs.highlightBlock(block));
+"" </script>
+"" O si lo cambias de lugar:
+"" let g:vimwiki_list = [{'path': '~/vimwiki', 'template_path': '~/vimwiki/default.tpl'}]
