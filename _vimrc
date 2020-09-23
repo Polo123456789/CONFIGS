@@ -1,6 +1,7 @@
 call plug#begin()
 
 "Plug 'vim-scripts/taglist.vim'
+"Plug 'lifepillar/vim-mucomplete'
 Plug 'preservim/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'itchyny/lightline.vim'
@@ -10,10 +11,10 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax' 
 Plug 'vimwiki/vimwiki'
 Plug 'dhruvasagar/vim-table-mode'
-Plug 'lifepillar/vim-mucomplete'
 Plug 'tpope/vim-fugitive'
 Plug 'mbbill/undotree'
 Plug 'Polo123456789/vim-wombat-scheme'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -48,15 +49,15 @@ set background=dark
 " set secure
 " set hlsearch
 
-" Config del mucomplete
-set completeopt+=menuone
-set completeopt+=noselect
-set completeopt+=noinsert
-set shortmess+=c   " Shut off completion messages
-set belloff+=ctrlg " If Vim beeps during completion
-let g:mucomplete#enable_auto_at_startup = 1
-let g:mucomplete#completion_delay = 1
-inoremap <C-Space> <Esc>:redraw!<CR>a
+" Config del mucomplete por si no tengo coc
+"set completeopt+=menuone
+"set completeopt+=noselect
+"set completeopt+=noinsert
+"set shortmess+=c   " Shut off completion messages
+"set belloff+=ctrlg " If Vim beeps during completion
+"let g:mucomplete#enable_auto_at_startup = 1
+"let g:mucomplete#completion_delay = 1
+"inoremap <C-Space> <Esc>:redraw!<CR>a
 
 " Omni Complete
 " set omnifunc=syntaxcomplete#Complete
@@ -165,13 +166,13 @@ autocmd BufRead,BufNewFile *.md call s:HeaderCreator()
 
 
 " Autocompletar tags en html
-function s:CompleteTags()
-  inoremap <buffer> > ></<C-x><C-o><Esc>:startinsert!<CR><C-O>?</<CR>
-  inoremap <buffer> ><Leader> >
-  inoremap <buffer> ><CR> ></<C-x><C-o><Esc>:startinsert!<CR><C-O>?</<CR><CR><Tab><CR><Up><C-O>$
-  inoremap {% {%%}<Esc>hi
-endfunction
-autocmd BufRead,BufNewFile *.html,*.js,*.xml call s:CompleteTags()
+" function s:CompleteTags()
+"   inoremap <buffer> > ></<C-x><C-o><Esc>:startinsert!<CR><C-O>?</<CR>
+"   inoremap <buffer> ><Leader> >
+"   inoremap <buffer> ><CR> ></<C-x><C-o><Esc>:startinsert!<CR><C-O>?</<CR><CR><Tab><CR><Up><C-O>$
+"   inoremap {% {%%}<Esc>hi
+" endfunction
+" autocmd BufRead,BufNewFile *.html,*.js,*.xml call s:CompleteTags()
 
 "" Modifique el default.tpl
 "" En el head:
@@ -183,3 +184,5 @@ autocmd BufRead,BufNewFile *.html,*.js,*.xml call s:CompleteTags()
 "" </script>
 "" O si lo cambias de lugar:
 "" let g:vimwiki_list = [{'path': '~/vimwiki', 'template_path': '~/vimwiki/default.tpl'}]
+
+source ~/_cocConfig
