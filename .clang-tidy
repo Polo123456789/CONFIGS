@@ -1,2 +1,2 @@
-Checks: '-*,bugprone-*,cppcoreguidelines-*,google-*,misc-*,modernize-*,performance-*,readability-*'
+Checks: '-*,bugprone-*,cppcoreguidelines-*,google-*,misc-*,modernize-*,performance-*,readability-*,-modernize-use-trailing-return-type, -modernize-redundant-void-arg'
 FormatStyle: 'file'
