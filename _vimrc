@@ -2,9 +2,11 @@ call plug#begin()
 
 "Plug 'vim-scripts/taglist.vim'
 "Plug 'lifepillar/vim-mucomplete'
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdtree'
 Plug 'majutsushi/tagbar'
-Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-pandoc/vim-pandoc'
@@ -15,6 +17,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'mbbill/undotree'
 Plug 'Polo123456789/vim-wombat-scheme'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'Yggdroot/indentLine'
 
 call plug#end()
 
@@ -41,13 +44,17 @@ set t_vb=
 set cmdheight=2
 set notimeout ttimeout ttimeoutlen=200
 set pastetoggle=<F12>
+set background=dark
+
 set shiftwidth=4
 set softtabstop=4
 set expandtab
-set background=dark
+
+set incsearch
+" set hlsearch
+
 " set exrc
 " set secure
-" set hlsearch
 
 " Config del mucomplete por si no tengo coc
 "set completeopt+=menuone
@@ -61,6 +68,12 @@ set background=dark
 
 " Omni Complete
 " set omnifunc=syntaxcomplete#Complete
+
+" Airline
+"let g:airline_theme='wombat'
+
+" Indent line
+let g:indentLine_char = '|'
 
 " Para usar el tema en la terminal
 if (has("termguicolors"))
@@ -77,7 +90,7 @@ let g:netrw_winsize = 25
 let g:vimwiki_global_ext = 0
 
 " Lideres
-let maplocalleader = "-"
+let maplocalleader = "\-"
 let mapleader = "\<Space>"
 
 " Mover lineas.
@@ -118,6 +131,8 @@ nnoremap <leader>tl :tabn<CR>
 nnoremap <leader>th :tabp<CR>
 
 " Spell
+" zg: Añade palabras al diccionario
+" zwu: Remueve palabras del diccionario
 nnoremap <leader>se :setlocal spell spelllang=es_es<CR>
 nnoremap <leader>si :setlocal spell spelllang=en_us<CR>
 nnoremap <leader>so :setlocal spell!<CR>
@@ -155,14 +170,31 @@ function s:sinSpell()
 endfunction
 autocmd BufRead,BufNewFile *.md call s:sinSpell()
 
-" Creador de Header para markdown
-function s:HeaderCreator()
-    nnoremap <leader>mh1 YpVr=
-    nnoremap <leader>mh2 YpVr-
-    inoremap <localleader>1 <Esc>YpVr=o<C-j>
-    inoremap <localleader>2 <Esc>YpVr-o<C-j>
+" De header a cpp
+function s:implToH()
+    nnoremap <leader>ti :e<Space>%<.cpp<CR>
+    nnoremap <leader>td :e<Space>%<.hpp<CR>
 endfunction
-autocmd BufRead,BufNewFile *.md call s:HeaderCreator()
+autocmd BufRead,BufNewFile *.cpp,*.hpp call s:implToH()
+
+function s:MarkdownMaps()
+    "Creacion de Headers
+    nnoremap <leader>mh1 "zY"zpVr=
+    nnoremap <leader>mh2 "zY"zpVr-
+    inoremap <localleader>1 <Esc>"zY"zpVr=o<C-j>
+    inoremap <localleader>2 <Esc>"zY"zpVr-o<C-j>
+
+    " Le añado unas idas a los links
+    " nnoremap <localleader>gt "zyi(:e %:h/<c-r>z<cr>
+    " Para ir al archivo que esta debajo del cursor usa gF
+
+    " Items de listas
+    inoremap <localleader>li <Esc>"zyy"zp<c-a>f.ll"_C
+    nnoremap <localleader>li "zyy"zp<c-a>f.ll"_C
+    inoremap <localleader>ui <c-j>*<Space>
+    nnoremap <localleader>ui o*<Space>
+endfunction
+autocmd BufRead,BufNewFile *.md call s:MarkdownMaps()
 
 
 " Autocompletar tags en html
