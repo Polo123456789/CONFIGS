@@ -18,6 +18,7 @@ Plug 'mbbill/undotree'
 Plug 'Polo123456789/vim-wombat-scheme'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Yggdroot/indentLine'
+Plug 'mhinz/vim-startify'
 
 call plug#end()
 
@@ -45,6 +46,7 @@ set cmdheight=2
 set notimeout ttimeout ttimeoutlen=200
 set pastetoggle=<F12>
 set background=dark
+set textwidth=80
 
 set shiftwidth=4
 set softtabstop=4
@@ -71,6 +73,21 @@ set incsearch
 
 " Airline
 "let g:airline_theme='wombat'
+
+let g:startify_custom_header = [
+    \  " .------..------..------..------..------.",
+    \  " |P.--. ||A.--. ||B.--. ||L.--. ||O.--. |",
+    \  " | :/\\: || (\\/) || :(): || :/\\: || :/\\: |",
+    \  " | (__) || :\\/: || ()() || (__) || :\\/: |",
+    \  " | '--'P|| '--'A|| '--'B|| '--'L|| '--'O|",
+    \  " '------''------''------''------''------'",
+    \  " .------..------..------..------..------..------..------.",
+    \  " |S.--. ||A.--. ||N.--. ||C.--. ||H.--. ||E.--. ||Z.--. |",
+    \  " | :/\\: || (\\/) || :(): || :/\\: || :/\\: || (\\/) || :(): |",
+    \  " | :\\/: || :\\/: || ()() || :\\/: || (__) || :\\/: || ()() |",
+    \  " | '--'S|| '--'A|| '--'N|| '--'C|| '--'H|| '--'E|| '--'Z|",
+    \  " '------''------''------''------''------''------''------'",
+             \]
 
 " Indent line
 let g:indentLine_char = '|'
@@ -143,6 +160,7 @@ nnoremap <leader>sd ]sz=1
 " FZF
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>bb :Buffers<CR>
+nnoremap <leader>gg :GFiles<CR>
 
 " Para no mover la mano del teclado
 inoremap fd <Esc>
@@ -179,13 +197,14 @@ autocmd BufRead,BufNewFile *.cpp,*.hpp call s:implToH()
 
 function s:MarkdownMaps()
     "Creacion de Headers
+    nnoremap <localleader>nc :set conceallevel=0<CR>
     nnoremap <leader>mh1 "zY"zpVr=
     nnoremap <leader>mh2 "zY"zpVr-
     inoremap <localleader>1 <Esc>"zY"zpVr=o<C-j>
     inoremap <localleader>2 <Esc>"zY"zpVr-o<C-j>
 
-    " Le añado unas idas a los links
-    " nnoremap <localleader>gt "zyi(:e %:h/<c-r>z<cr>
+    " Para crear una archivo de un link
+    nnoremap <localleader>cf "zyi(:e %:h/<c-r>z<cr>
     " Para ir al archivo que esta debajo del cursor usa gF
 
     " Items de listas
@@ -196,6 +215,8 @@ function s:MarkdownMaps()
 endfunction
 autocmd BufRead,BufNewFile *.md call s:MarkdownMaps()
 
+
+source ~/_cocConfig
 
 " Autocompletar tags en html
 " function s:CompleteTags()
@@ -217,4 +238,3 @@ autocmd BufRead,BufNewFile *.md call s:MarkdownMaps()
 "" O si lo cambias de lugar:
 "" let g:vimwiki_list = [{'path': '~/vimwiki', 'template_path': '~/vimwiki/default.tpl'}]
 
-source ~/_cocConfig
