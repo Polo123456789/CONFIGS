@@ -104,6 +104,7 @@ let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_winsize = 25
+
 let g:vimwiki_global_ext = 0
 
 " Lideres
@@ -119,6 +120,7 @@ vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " Comodidades
+autocmd InsertEnter * norm zz
 nnoremap <leader>vrc :e ~/_vimrc<CR>
 nnoremap <C-l> zz
 inoremap <C-l> <C-o>zz
@@ -132,7 +134,9 @@ noremap <C-j> <Esc>/<++><CR><Esc>"_cf>
 " Shortcuts
 nnoremap <leader>bd :bd<CR>
 nnoremap <leader><tab> :bn<CR>
-nnoremap <leader>R :%s//g<left><left>
+nnoremap <leader>Rg :%s//g<left><left>
+nnoremap <leader>Rw *N:%s///g<left><left>
+vnoremap <leader>R :s//g<left><left>
 nnoremap <leader>hs :set hlsearch!<CR>
 
 " Maps de Plugins
@@ -146,6 +150,7 @@ nnoremap <leader>ut :UndotreeToggle<CR>
 nnoremap <leader>tn :tabnew 
 nnoremap <leader>tl :tabn<CR>
 nnoremap <leader>th :tabp<CR>
+nnoremap <leader>te :tabnew<CR>:term<CR><c-w>j:resize 1<CR><c-w>k
 
 " Spell
 " zg: Añade palabras al diccionario
@@ -159,8 +164,12 @@ nnoremap <leader>sd ]sz=1
 
 " FZF
 nnoremap <leader>ff :Files<CR>
-nnoremap <leader>bb :Buffers<CR>
-nnoremap <leader>gg :GFiles<CR>
+nnoremap <leader>fb :Buffers<CR>
+nnoremap <leader>fg :GFiles<CR>
+nnoremap <leader>fl :Lines<CR>
+nnoremap <leader>fw :Windows<CR>
+nnoremap <leader>fh :History
+nnoremap <leader>fc :Colors<CR>
 
 " Para no mover la mano del teclado
 inoremap fd <Esc>
