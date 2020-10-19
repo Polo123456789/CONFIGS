@@ -5,18 +5,18 @@ TabWidth: 4
 AccessModifierOffset: -1
 AlignAfterOpenBracket: DontAlign 
 AlignConsecutiveAssignments: false
-AlignConsecutiveBitFields: false
+#AlignConsecutiveBitFields: false
 AlignConsecutiveDeclarations: false
 AlignConsecutiveMacros: false
 AlignEscapedNewlines: DontAlign
-AlignOperands: Align
+AlignOperands: true
 AlignTrailingComments: false
 AllowAllArgumentsOnNextLine: false
 AllowAllConstructorInitializersOnNextLine: true
 AllowAllParametersOfDeclarationOnNextLine: false
 AllowShortBlocksOnASingleLine: Never
 AllowShortCaseLabelsOnASingleLine: false
-AllowShortEnumsOnASingleLine: true
+#AllowShortEnumsOnASingleLine: true
 AllowShortFunctionsOnASingleLine: Empty
 AllowShortIfStatementsOnASingleLine: Never
 AllowShortLambdasOnASingleLine: Empty
@@ -25,12 +25,12 @@ AlwaysBreakAfterReturnType: None
 AlwaysBreakTemplateDeclarations: Yes
 BinPackArguments: false
 BinPackParameters: false
-BitFieldColonSpacing: Both
+#BitFieldColonSpacingStyle: Both
 BreakBeforeBraces: Custom
 BraceWrapping:
     AfterCaseLabel: true
     AfterClass: true
-    BraceWrappingAfterControlStatementStyle: MultiLine
+#    BraceWrappingAfterControlStatementStyle: MultiLine
     AfterEnum: false
     AfterFunction: false
     AfterNamespace: false
@@ -38,8 +38,8 @@ BraceWrapping:
     AfterUnion: false
     AfterExternBlock: false
     BeforeElse: false
-    BeforeLambdaBody: false
-    BeforeWhile: false
+#    BeforeLambdaBody: false
+#    BeforeWhile: false
     SplitEmptyFunction: false
     SplitEmptyRecord: false
     SplitEmptyNamespace : false
@@ -55,9 +55,9 @@ ContinuationIndentWidth: 4
 Cpp11BracedListStyle: true
 FixNamespaceComments: true
 IncludeBlocks: Preserve
-IndentCaseBlocks: false
+#IndentCaseBlocks: false
 IndentCaseLabels: false
-IndentExternBlock: NoIndent
+#IndentExternBlock: NoIndent
 IndentGotoLabels: false
 IndentPPDirectives: BeforeHash
 IndentWrappedFunctionNames: true
@@ -71,7 +71,7 @@ SortUsingDeclarations: false
 SpaceAfterCStyleCast: false
 SpaceAfterLogicalNot: false
 SpaceAfterTemplateKeyword: false
-SpaceAroundPointerQualifiers: Before
+# SpaceAroundPointerQualifiersStyle: Before
 SpaceBeforeAssignmentOperators: true
 SpaceBeforeCpp11BracedList: false
 SpaceBeforeCtorInitializerColon: true
