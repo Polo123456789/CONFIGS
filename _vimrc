@@ -1,9 +1,14 @@
 call plug#begin()
 
 "Plug 'vim-scripts/taglist.vim'
-"Plug 'lifepillar/vim-mucomplete'
 "Plug 'vim-airline/vim-airline'
 "Plug 'vim-airline/vim-airline-themes'
+if has('nvim')
+    Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+else
+"   Plug 'lifepillar/vim-mucomplete'
+endif
 Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdtree'
 Plug 'majutsushi/tagbar'
@@ -16,7 +21,6 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'tpope/vim-fugitive'
 Plug 'mbbill/undotree'
 Plug 'Polo123456789/vim-wombat-scheme'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Yggdroot/indentLine'
 Plug 'mhinz/vim-startify'
 
@@ -53,24 +57,25 @@ set softtabstop=4
 set expandtab
 
 set incsearch
-" set hlsearch
+"set hlsearch
 
 " set exrc
 " set secure
 
-" Config del mucomplete por si no tengo coc
-"set completeopt+=menuone
-"set completeopt+=noselect
-"set completeopt+=noinsert
-"set shortmess+=c   " Shut off completion messages
-"set belloff+=ctrlg " If Vim beeps during completion
-"let g:mucomplete#enable_auto_at_startup = 1
-"let g:mucomplete#completion_delay = 1
-"inoremap <C-Space> <Esc>:redraw!<CR>a
-
-" Omni Complete
-" set omnifunc=syntaxcomplete#Complete
-
+if !has('nvim')
+    " Config del mucomplete por si no tengo coc
+    set completeopt+=menuone
+    set completeopt+=noselect
+    set completeopt+=noinsert
+    set shortmess+=c   " Shut off completion messages
+    set belloff+=ctrlg " If Vim beeps during completion
+    let g:mucomplete#enable_auto_at_startup = 1
+    let g:mucomplete#completion_delay = 1
+    inoremap <C-Space> <Esc>:redraw!<CR>a
+    
+    " Omni Complete
+    set omnifunc=syntaxcomplete#Complete
+endif
 " Airline
 "let g:airline_theme='wombat'
 
@@ -98,6 +103,11 @@ if (has("termguicolors"))
     colorscheme wombat
 endif
 
+if has('nvim')
+    tnoremap <C-w>N <C-\><C-n>
+    tnoremap fd <C-\><C-n>
+endif
+
 " Por si no tengo nerdTree a la mano
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
@@ -120,7 +130,7 @@ vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " Comodidades
-autocmd InsertEnter * norm zz
+" autocmd InsertEnter * norm zz
 nnoremap <leader>vrc :e ~/_vimrc<CR>
 nnoremap <C-l> zz
 inoremap <C-l> <C-o>zz
@@ -150,7 +160,11 @@ nnoremap <leader>ut :UndotreeToggle<CR>
 nnoremap <leader>tn :tabnew 
 nnoremap <leader>tl :tabn<CR>
 nnoremap <leader>th :tabp<CR>
-nnoremap <leader>te :tabnew<CR>:term<CR><c-w>j:resize 1<CR><c-w>k
+if has('nvim')
+    nnoremap te :tabnew<CR>:term<CR>
+else
+    nnoremap <leader>te :tabnew<CR>:term<CR><c-w>j:resize 1<CR><c-w>k
+endif
 
 " Spell
 " zg: Añade palabras al diccionario
@@ -198,11 +212,11 @@ endfunction
 autocmd BufRead,BufNewFile *.md call s:sinSpell()
 
 " De header a cpp
-function s:implToH()
-    nnoremap <leader>ti :e<Space>%<.cpp<CR>
-    nnoremap <leader>td :e<Space>%<.hpp<CR>
-endfunction
-autocmd BufRead,BufNewFile *.cpp,*.hpp call s:implToH()
+"function s:implToH()
+"    nnoremap <leader>ti :e<Space>%<.cpp<CR>
+"    nnoremap <leader>td :e<Space>%<.hpp<CR>
+"endfunction
+"autocmd BufRead,BufNewFile *.cpp,*.hpp call s:implToH()
 
 function s:MarkdownMaps()
     "Creacion de Headers
@@ -224,8 +238,13 @@ function s:MarkdownMaps()
 endfunction
 autocmd BufRead,BufNewFile *.md call s:MarkdownMaps()
 
+function! UseSystemClipboard()
+    setlocal clipboard+=unnamed
+endfunction
 
-source ~/_cocConfig
+if has('nvim')
+    source ~/_cocConfig
+endif
 
 " Autocompletar tags en html
 " function s:CompleteTags()
