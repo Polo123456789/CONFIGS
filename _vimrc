@@ -9,6 +9,7 @@ if has('nvim')
 else
 "   Plug 'lifepillar/vim-mucomplete'
 endif
+Plug 'junegunn/goyo.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdtree'
 Plug 'majutsushi/tagbar'
@@ -51,6 +52,7 @@ set notimeout ttimeout ttimeoutlen=200
 set pastetoggle=<F12>
 set background=dark
 set textwidth=80
+set lazyredraw
 
 set shiftwidth=4
 set softtabstop=4
@@ -97,6 +99,15 @@ let g:startify_custom_header = [
 " Indent line
 let g:indentLine_char = '|'
 
+" NERDTree
+let g:NERDTreeWinPos = "right"
+"au VimEnter *  NERDTree
+autocmd VimEnter * wincmd p
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
+
 " Para usar el tema en la terminal
 if (has("termguicolors"))
     set termguicolors
@@ -122,18 +133,19 @@ let maplocalleader = "\-"
 let mapleader = "\<Space>"
 
 " Mover lineas.
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
+"nnoremap <A-j> :m .+1<CR>==
+"nnoremap <A-k> :m .-2<CR>==
+"inoremap <A-j> <Esc>:m .+1<CR>==gi
+"inoremap <A-k> <Esc>:m .-2<CR>==gi
+"vnoremap <A-j> :m '>+1<CR>gv=gv
+"vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " Comodidades
 " autocmd InsertEnter * norm zz
 nnoremap <leader>vrc :e ~/_vimrc<CR>
 nnoremap <C-l> zz
 inoremap <C-l> <C-o>zz
+vnoremap <C-l> zz
 
 " Numeros relativos
 nnoremap <silent> <leader>nb :set relativenumber!<CR>
@@ -148,6 +160,8 @@ nnoremap <leader>Rg :%s//g<left><left>
 nnoremap <leader>Rw *N:%s///g<left><left>
 vnoremap <leader>R :s//g<left><left>
 nnoremap <leader>hs :set hlsearch!<CR>
+inoremap <c-k> <Esc>gqgqA
+nnoremap <c-k> gqgqA
 
 " Maps de Plugins
 " nnoremap <leader>Ts :Tlist<CR>
@@ -184,9 +198,11 @@ nnoremap <leader>fl :Lines<CR>
 nnoremap <leader>fw :Windows<CR>
 nnoremap <leader>fh :History
 nnoremap <leader>fc :Colors<CR>
+nnoremap <leader>ft :Filetypes<CR>
 
 " Para no mover la mano del teclado
 inoremap fd <Esc>
+vnoremap fd <Esc>
 
 " Autocompletar ", (, {  
 inoremap " ""<Esc>i
@@ -218,7 +234,7 @@ autocmd BufRead,BufNewFile *.md call s:sinSpell()
 "endfunction
 "autocmd BufRead,BufNewFile *.cpp,*.hpp call s:implToH()
 
-function s:MarkdownMaps()
+function! MarkdownMaps()
     "Creacion de Headers
     nnoremap <localleader>nc :set conceallevel=0<CR>
     nnoremap <leader>mh1 "zY"zpVr=
@@ -235,12 +251,18 @@ function s:MarkdownMaps()
     nnoremap <localleader>li "zyy"zp<c-a>f.ll"_C
     inoremap <localleader>ui <c-j>*<Space>
     nnoremap <localleader>ui o*<Space>
+    inoremap <localleader>cs <Esc>gqgqI> <Esc>A
+    inoremap <C-b> ****<left><left>
+    inoremap <C-i> **<left>
+    set conceallevel = 0
 endfunction
-autocmd BufRead,BufNewFile *.md call s:MarkdownMaps()
+autocmd BufRead,BufNewFile *.md call MarkdownMaps()
+command MarkMode call MarkdownMaps()
 
 function! UseSystemClipboard()
     setlocal clipboard+=unnamed
 endfunction
+command SystemClip call UseSystemClipboard()
 
 if has('nvim')
     source ~/_cocConfig
