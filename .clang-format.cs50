@@ -26,27 +26,8 @@ AlwaysBreakTemplateDeclarations: Yes
 BinPackArguments: false
 BinPackParameters: false
 #BitFieldColonSpacingStyle: Both
-# El BreakBeforeBraces: Attach mas adelante se encarga de que siempre esten
-# pegados, si siempre quiere separar, use Allman
-# BreakBeforeBraces: Custom
-# BraceWrapping:
-#     AfterCaseLabel: true
-#     AfterClass: true
-# #    BraceWrappingAfterControlStatementStyle: MultiLine
-#     AfterEnum: false
-#     AfterFunction: false
-#     AfterNamespace: false
-#     AfterStruct: false
-#     AfterUnion: false
-#     AfterExternBlock: false
-#     BeforeElse: false
-# #    BeforeLambdaBody: false
-# #    BeforeWhile: false
-#     SplitEmptyFunction: false
-#     SplitEmptyRecord: false
-#     SplitEmptyNamespace : false
+BreakBeforeBraces: Allman
 BreakBeforeBinaryOperators: NonAssignment
-BreakBeforeBraces: Attach
 BreakBeforeTernaryOperators: true
 BreakStringLiterals: true
 ColumnLimit: 80
