@@ -24,6 +24,7 @@ Plug 'mbbill/undotree'
 Plug 'Polo123456789/vim-wombat-scheme'
 Plug 'Yggdroot/indentLine'
 Plug 'mhinz/vim-startify'
+Plug 'easymotion/vim-easymotion'
 
 call plug#end()
 
@@ -252,9 +253,6 @@ function! MarkdownMaps()
     inoremap <localleader>ui <c-j>*<Space>
     nnoremap <localleader>ui o*<Space>
     inoremap <localleader>cs <Esc>gqgqI> <Esc>A
-    inoremap <C-b> ****<left><left>
-    inoremap <C-i> **<left>
-    set conceallevel = 0
 endfunction
 autocmd BufRead,BufNewFile *.md call MarkdownMaps()
 command MarkMode call MarkdownMaps()
@@ -264,9 +262,24 @@ function! UseSystemClipboard()
 endfunction
 command SystemClip call UseSystemClipboard()
 
+" Goyo config
+let myconf#goyo_toggled = 0
+function! FuncToggleGoyo()
+    if g:myconf#goyo_toggled 
+        execute "Goyo 81"
+        g:myconf#goyo_toggled = 1
+    else
+        execute "Goyo"
+        g:myconf#goyo_toggled = 0
+    endif
+endfunction
+command ToggleGoyo call FuncToggleGoyo()
+nnoremap <leader>gt :ToggleGoyo<CR>
+
 if has('nvim')
     source ~/_cocConfig
 endif
+
 
 " Autocompletar tags en html
 " function s:CompleteTags()
