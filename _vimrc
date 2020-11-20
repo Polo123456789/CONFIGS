@@ -1,3 +1,4 @@
+" ``
 call plug#begin()
 
 "Plug 'vim-scripts/taglist.vim'
@@ -60,7 +61,9 @@ set softtabstop=4
 set expandtab
 
 set incsearch
-"set hlsearch
+set nohlsearch
+
+set conceallevel=0
 
 " set exrc
 " set secure
@@ -140,6 +143,11 @@ let mapleader = "\<Space>"
 "inoremap <A-k> <Esc>:m .-2<CR>==gi
 "vnoremap <A-j> :m '>+1<CR>gv=gv
 "vnoremap <A-k> :m '<-2<CR>gv=gv
+"
+" Pinche nvim no me agarra los ``
+if has("nvim")
+    inoremap <M-C-_><M-C-_> ``
+endif
 
 " Comodidades
 " autocmd InsertEnter * norm zz
@@ -168,7 +176,7 @@ nnoremap <c-k> gqgqA
 " nnoremap <leader>Ts :Tlist<CR>
 nnoremap <leader>ee :NERDTreeToggle<CR>
 nnoremap <leader>Ts :TagbarToggle<CR>
-nnoremap <leader>Tc :!ctags --c-kinds=+p -R .<CR>
+"nnoremap <leader>Tc :!ctags --c-kinds=+p -R .<CR>
 nnoremap <leader>ut :UndotreeToggle<CR>
 
 " Tabs
