@@ -3,7 +3,7 @@ Language: Cpp
 IndentWidth: 4
 TabWidth: 4
 AccessModifierOffset: -1
-AlignAfterOpenBracket: Aling
+AlignAfterOpenBracket: Align
 AlignConsecutiveAssignments: false
 #AlignConsecutiveBitFields: false
 AlignConsecutiveDeclarations: true
@@ -49,6 +49,8 @@ BreakBeforeBinaryOperators: NonAssignment
 BreakBeforeBraces: Attach
 BreakBeforeTernaryOperators: true
 BreakStringLiterals: true
+BreakConstructorInitializers: BeforeColon
+BreakInheritanceList: BeforeColon
 ColumnLimit: 80
 CompactNamespaces: false
 ConstructorInitializerAllOnOneLineOrOnePerLine: false
